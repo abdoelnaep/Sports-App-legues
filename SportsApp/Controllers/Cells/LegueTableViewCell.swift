@@ -15,6 +15,7 @@ class LegueTableViewCell: UITableViewCell {
     
     let url: NSURL? = nil
     var gotoYoutube: (() -> ())?
+    
     @IBOutlet var legueImage: UIImageView!
     
     @IBOutlet var legueName: UILabel!

@@ -2,43 +2,78 @@
 
 import Foundation
 
-
-
-struct Sport: Codable {
+struct Sport: Codable
+{
     let sports: [SportElement]
 }
 
-struct SportElement: Codable {
-    let idSport : String
-    let strSport: String
-    let strFormat: String
-    let strSportThumb: String
-    let strSportIconGreen: String
-    let strSportDescription: String
-}
-
-
-struct Legues:Decodable
+struct SportElement: Codable
 {
-    var countrys:[Country]
+    let idSport: String?
+    let strSport: String?
+    let strFormat: String?
+    let strSportThumb: String?
+    let strSportIconGreen: String?
+    let strSportDescription: String?
 }
 
-struct Country:Decodable
+struct Legues: Codable
 {
-    var idLeague: String
-    var strSport: String
-    var strYoutube:String
-    var strBadge:String
-    var strLeague:String
-//    init() {
-//        idLeague = ""
-//        strSport = ""
-//        strYoutube = ""
-//        strBadge = ""
-//        strLeague = ""
-//    }
+    var countrys: [Country]
 }
 
+struct Country: Codable
+{
+    var idLeague: String?
+    var strSport: String?
+    var strYoutube: String?
+    var strBadge: String?
+    var strLeague: String?
+}
 
+struct TeamModel: Codable
+{
+    var teams: [TeamElement]
+}
 
+struct TeamElement: Codable
+{
+    // var TEAMS: String
+    var idTeam: String?
+    var strTeam: String?
+    var strTeamBadge: String?
+}
 
+struct EventModel: Codable
+{
+    var events: [EventElement]
+}
+
+struct EventElement: Codable
+{
+    var idEvent: String?
+    var strEvent: String?
+    var dateEvent: String?
+    var strTime: String?
+    var strThumb: String?
+    var intHomeScore: String?
+    var intAwayScore: String?
+    var strHomeTeam: String?
+    var strAwayTeam: String?
+}
+
+struct comingEventModel: Codable
+{
+    var event: [comingEventElement]
+}
+
+struct comingEventElement: Codable
+{
+    var idEvent: String?
+    var strEvent: String?
+    var dateEvent: String?
+    var strTime: String?
+    // var strThumb : String
+//    var strHomeTeam : String
+//    var strAwayTeam : String
+}

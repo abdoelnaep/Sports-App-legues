@@ -2,6 +2,7 @@
 import UIKit
 //import SDWebImage
 
+ 
 
 
 class SportViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -31,7 +32,7 @@ class SportViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         let sport = sportsarray[indexPath.row]
         cell.titleLable.text = sport.strSport
-        cell.thumbImageView.fetchImageFromUrl( sport.strSportThumb)
+        cell.thumbImageView.fetchImageFromUrl( sport.strSportThumb!)
 
         return cell
     }
