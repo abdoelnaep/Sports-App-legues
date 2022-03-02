@@ -26,10 +26,11 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         UrlSessionForTeams()
         UrlSessionForEventsResult()
+        UrlSessionForUpcomingEvents()
+
         
         configureCollectionView()
         configureCollectionViewResult()
-        UrlSessionForUpcomingEvents()
 //        print(leageName!)
 //        print(teamsarray.count)
 
@@ -79,7 +80,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
             cell.teamName.text = result.strEvent
             cell.teamTime.text = result.strTime
             cell.teamScore.text = "\(result.intHomeScore ?? "_") Vs \(result.intAwayScore ?? "_")"
-
+            cell.backgroundColor = UIColor.blue
             return cell
         }
 
@@ -116,7 +117,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         leageName = leageName!.replacingOccurrences(of: " ", with: "%20")
 
        guard let url = URL(string: Constants.search_all_teams + leageName!)  else {return}// 1
-        // print(url!)
+        print("teams link")
+        print(url)
         
         
      //   guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/searchfilename.php?e=\(String(describing: leagueName!))")
@@ -147,6 +149,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
 
         leageName = leageName!.replacingOccurrences(of: " ", with: "%20")
        guard let url = URL(string: Constants.urlSub + leageID!) else {return}// 1 // 1
+        print("events result link")
         print(url)
         let req = URLRequest(url: url)
         let session = URLSession(configuration: URLSessionConfiguration.default)
@@ -175,8 +178,10 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
 
 
         leageName = leageName!.replacingOccurrences(of: " ", with: "%20")
-      guard  let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/searchfilename.php?e=" + leageName!) else {return}// 1
+        guard  let url = URL(string: Constants.upCommingEvents + leageName!) else {return}// 1
         let req = URLRequest(url: url)
+        print("upcoming link")
+        print(url)
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: req) { data, _, _ in
 

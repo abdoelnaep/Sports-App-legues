@@ -234,7 +234,7 @@
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fMp-a2-HfV">
                                 <rect key="frame" x="0.0" y="379" width="414" height="302"/>
-                                <color key="backgroundColor" red="0.36016944050788879" green="0.90888959169387817" blue="0.87364304065704346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c52-8u-v1z">
                                     <size key="itemSize" width="407" height="297"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>

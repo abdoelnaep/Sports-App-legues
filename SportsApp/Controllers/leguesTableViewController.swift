@@ -52,7 +52,7 @@ class leguesTableViewController: UITableViewController {
                 //  let link = sport.strYoutube != "" ? ("https://\(sport.strYoutube)") : "https://www.google.com"
                 if sport.strYoutube != "" {
                     print("cool")
-                    let url = URL(string: "https://\(String(describing: sport.strYoutube))")
+                    let url = URL(string: "https://\(String(describing: sport.strYoutube!))")
                     UIApplication.shared.open(url!)
 
                 } else {
