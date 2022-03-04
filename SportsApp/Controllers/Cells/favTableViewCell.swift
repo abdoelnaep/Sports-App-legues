@@ -8,15 +8,12 @@
 import UIKit
 
 class favTableViewCell: UITableViewCell {
-    
-    
     let url: NSURL? = nil
     var gotoYoutube: (() -> ())?
     
+    @IBOutlet var favTableViewImage: UIImageView!
     
-    @IBOutlet weak var favTableViewImage: UIImageView!
-    
-    @IBOutlet weak var favTableViewILabel: UILabel!
+    @IBOutlet var favTableViewILabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -31,12 +28,7 @@ class favTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
-    
-    
     @IBAction func favTableViewIYoutubePressed(_ sender: Any) {
         gotoYoutube!()
-
     }
-    
 }

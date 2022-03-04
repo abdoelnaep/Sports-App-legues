@@ -8,26 +8,27 @@
 import UIKit
 
 class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var favLeague: [FavouriteLeagues] = []
+    var favlegueFlag: Bool = false
+    var fromFacvScreenFlag: Bool = false
 
-    
     var leageName: String?
     var leageID: String?
     var leageYoutube: String?
     var legueBadge: String?
 
-
     var teamsarray: [TeamElement] = []
     var latestResultsArray: [EventElement] = []
     var upComingEventsArray: [comingEventElement] = []
 
+    @IBOutlet var favoriteButton: UIButton!
     @IBOutlet var eventsCollectionView: UICollectionView!
 
     @IBOutlet var latestResultsCollectionView: UICollectionView!
 
-    @IBOutlet weak var teamCollectionView_Abdallah: UICollectionView!
-    
+    @IBOutlet var teamCollectionView_Abdallah: UICollectionView!
+
     //    var eventsArray:[Event]?
     // teamsCollectionView
     override func viewDidLoad() {
@@ -37,6 +38,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         UrlSessionForTeams()
         UrlSessionForEventsResult()
         UrlSessionForUpcomingEvents()
+        fetchData()
+        isFovorite()
 
         configureCollectionView()
         configureCollectionViewResult()
@@ -52,21 +55,39 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         teamCollectionView_Abdallah.delegate = self
         teamCollectionView_Abdallah.dataSource = self
     }
-    
-    
-    
-    @IBAction func addFavPressed(_ sender: Any) {
-        
-        saveData()
-      
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if fromFacvScreenFlag == true {
+            tabBarController?.tabBar.isHidden = true
+        }
     }
-    
-    private func configureItems ( ) {
-        self.navigationItem.rightBarButtonItem  = UIBarButtonItem(
-            barButtonSystemItem: .save,
-            target: self,
-            action: nil
-                            )
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+
+    @IBAction func addFavPressed(_ sender: Any) {
+        fetchData()
+
+        if favlegueFlag == true { // set false
+            for i in stride(from: 0, through: favLeague.count - 1, by: 1) {
+                if leageID == favLeague[i].idLeague {
+                    favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+                    context.delete(favLeague[i])
+                    try? context.save()
+                    favlegueFlag = false
+                }
+            }
+
+        } else { //  set true
+            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+
+            favlegueFlag = true
+
+            saveData()
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -82,23 +103,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         } else {
             return 1
         }
-//      } else if (collectionView == self.latestResultsCollectionView){
-//           return  latestResultsArray?.count ?? 0
-//        } else {
-        //    return 0
     }
-
-
-
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    // print("selscted")
-//        if collectionView == teamsCollectionView {
-//            let teamname = teamsarray[indexPath.row].strTeam
-//            print(teamname!)
-//
-//
-//        }
-//    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == teamCollectionView_Abdallah {
@@ -137,21 +142,16 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
 
         return UICollectionViewCell()
     }
-    
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == teamCollectionView_Abdallah {
-           // print(teamsarray[indexPath.row].idTeam)
-            
+            // print(teamsarray[indexPath.row].idTeam)
+
             if let teamDetailsVC = storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController {
                 teamDetailsVC.targetTeam = teamsarray[indexPath.row]
-            
+
                 navigationController?.pushViewController(teamDetailsVC, animated: true)
             }
-            
-            
-            
         }
     }
 
@@ -170,7 +170,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
 
     func configureCollectionViewResult() {
         let layout = UICollectionViewFlowLayout()
-      
+
         layout.minimumInteritemSpacing = 0
 
         let size = (view.frame.size.width)
@@ -264,20 +264,33 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         }
         task.resume()
     }
-    
-    
-    
-    func saveData(){
-                let savedLeague = FavouriteLeagues(context: context)
-            let leagueName = leageName?.replacingOccurrences(of: "%20", with: " ")
-                savedLeague.strLeague = leagueName
-        
-                savedLeague.idLeague = leageID
-                savedLeague.strYoutube = leageYoutube
-                savedLeague.strBadge = legueBadge
 
-        try?context.save()
+    func saveData() {
+        let savedLeague = FavouriteLeagues(context: context)
+        let leagueName = leageName?.replacingOccurrences(of: "%20", with: " ")
+        savedLeague.strLeague = leagueName
+
+        savedLeague.idLeague = leageID
+        savedLeague.strYoutube = leageYoutube
+        savedLeague.strBadge = legueBadge
+
+        try? context.save()
+    }
+
+    func isFovorite() {
+        for i in stride(from: 0, through: favLeague.count - 1, by: 1) {
+            if leageID == favLeague[i].idLeague {
+                favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                favlegueFlag = true
             }
-    
-    
+        }
+    }
+
+    func fetchData() {
+        do {
+            favLeague = try context.fetch(FavouriteLeagues.fetchRequest())
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }

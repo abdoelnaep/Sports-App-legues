@@ -17,28 +17,23 @@ class leguesTableViewController: UITableViewController {
         super.viewDidLoad()
         title = "Leagues"
 
-
         //   print(sportName!)
         UrlSession()
     }
 
     // MARK: - Table view data source
 
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if let leagueDetailsVC = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as? LeagueDetailsViewController {
             leagueDetailsVC.leageName = leguesarray[indexPath.row].strLeague
             leagueDetailsVC.leageID = leguesarray[indexPath.row].idLeague
             leagueDetailsVC.leageYoutube = leguesarray[indexPath.row].strYoutube
             leagueDetailsVC.legueBadge = leguesarray[indexPath.row].strBadge
-        
+
             navigationController?.pushViewController(leagueDetailsVC, animated: true)
         }
-        
-        
     }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return leguesarray.count
     }
@@ -47,7 +42,7 @@ class leguesTableViewController: UITableViewController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "LegueTableViewCell", for: indexPath) as? LegueTableViewCell {
             let sport = leguesarray[indexPath.row]
             cell.legueName.text = sport.strLeague
-        
+
 //            cell.legueImage.sd_setImage(with: URL(string: sport.strBadge), completed: nil)
             cell.legueImage.fetchImageFromUrl(sport.strBadge!)
 
@@ -71,8 +66,6 @@ class leguesTableViewController: UITableViewController {
             return cell
         }
 
-        //   cell.thumbImageView.sd_setImage(with: URL(string: sport.strSportThumb), completed: nil)
-
         return UITableViewCell()
     }
 
@@ -80,27 +73,11 @@ class leguesTableViewController: UITableViewController {
         return CGFloat(90)
     }
 
-//    func stringReplace(param: String) -> (String) {
-//        var newarr = ""
-////        var char: Character
-//        for char in param {
-//            if char == " " {
-//                newarr.append("%20")
-//
-//            } else {
-//                newarr.append(char)
-//            }
-//        }
-//        return newarr
-//    }
-
     func UrlSession() {
-//        let newsportName = stringReplace(param: sportName!)
-//        print(newsportName)
-        
         sportName = sportName!.replacingOccurrences(of: " ", with: "%20")
-        
+
         let url = URL(string: Constants.BASE_URL_LEAGUES + sportName!) // 1
+        print(url!)
         let req = URLRequest(url: url!)
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: req) { data, _, _ in
@@ -108,7 +85,7 @@ class leguesTableViewController: UITableViewController {
             do {
                 let someStructArray = try JSONDecoder().decode(Legues.self, from: data!)
                 self.leguesarray = someStructArray.countrys
-                    print(self.leguesarray.count)
+                print(self.leguesarray.count)
 
                 DispatchQueue.main.async {
                     self.legueTableView.reloadData()

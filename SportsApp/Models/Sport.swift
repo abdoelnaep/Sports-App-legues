@@ -42,19 +42,14 @@ struct TeamElement: Codable
     var idTeam: String?
     var strTeam: String?
     var strTeamBadge: String?
-    var   strCountry: String?
-    var  intFormedYear: String?
-    var  strStadium: String?
-    var  strStadiumThumb: String?
-   // var  strStadiumLocation: String?
+    var strCountry: String?
+    var intFormedYear: String?
+    var strStadium: String?
+    var strStadiumThumb: String?
     var strFacebook: String?
     var strYoutube: String?
-   var strTeamJersey: String?
+    var strTeamJersey: String?
     var strWebsite: String?
-    
-    
-    
-    
 }
 
 struct EventModel: Codable
@@ -86,7 +81,5 @@ struct comingEventElement: Codable
     var strEvent: String?
     var dateEvent: String?
     var strTime: String?
-    var strThumb : String?
-//    var strHomeTeam : String
-//    var strAwayTeam : String
+    var strThumb: String?
 }

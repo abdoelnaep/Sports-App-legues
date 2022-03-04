@@ -8,11 +8,9 @@
 import UIKit
 
 class CommingEventsCollectionViewCell: UICollectionViewCell {
+    @IBOutlet var comEventITime: UILabel!
+    @IBOutlet var comEventImage: UIImageView!
 
-    
-    @IBOutlet weak var comEventITime: UILabel!
-    @IBOutlet weak var comEventImage: UIImageView!
-    
-    @IBOutlet weak var comEventIName: UILabel!
-    @IBOutlet weak var comEventIDate: UILabel!
+    @IBOutlet var comEventIName: UILabel!
+    @IBOutlet var comEventIDate: UILabel!
 }

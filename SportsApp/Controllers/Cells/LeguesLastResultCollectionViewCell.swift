@@ -13,10 +13,5 @@ class LeguesLastResultCollectionViewCell: UICollectionViewCell {
     @IBOutlet var teamScore: UILabel!
     @IBOutlet var teamDate: UILabel!
     @IBOutlet var teamTime: UILabel!
-    
-    
-    
-    
-    
-    
+
 }

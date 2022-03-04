@@ -52,23 +52,7 @@ class CoreDataServices
            }
         }
     }
-    
-    func isFovorite(leagueId: Int)-> Bool{
-       do {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavouriteLeagues")
-           fetchRequest.predicate = NSPredicate(format: "idLeague == %@", leagueId.description)
-            
-          if let mContext = self.manageContext{
-                let result = try mContext.fetch(fetchRequest)
-            if result.count > 0 {
-                return true
-            }
-                  }
-              } catch let error {
-                  print("Detele all data in LeaguesEntity error :", error)
-              }
-        return false
-    }
+ 
     func displayFavouriteLeagues() -> [String:[FavouriteLeagues]]
     {
         var favLeagues:[String:[FavouriteLeagues]] = [:]

@@ -1,14 +1,9 @@
 
 import UIKit
-//import SDWebImage
-
- 
-
+// import SDWebImage
 
 class SportViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet var collectionView: UICollectionView!
-    
-//    var presenter: leguesTableViewController!
     var sportsarray: [SportElement] = []
 
     override func viewDidLoad() {
@@ -19,22 +14,18 @@ class SportViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         collectionView.dataSource = self
         
         UrlSession()
-     
-
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       // print(sportsarray.count)
         return sportsarray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SportCollectionViewCell
         
-        
         let sport = sportsarray[indexPath.row]
         cell.titleLable.text = sport.strSport
-        cell.thumbImageView.fetchImageFromUrl( sport.strSportThumb!)
+        cell.thumbImageView.fetchImageFromUrl(sport.strSportThumb!)
 
         return cell
     }
@@ -55,18 +46,15 @@ class SportViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if let detailsVC = storyboard?.instantiateViewController(withIdentifier: "leguesTableViewController") as? leguesTableViewController {
-           detailsVC.sportName = sportsarray[indexPath.row].strSport
+            detailsVC.sportName = sportsarray[indexPath.row].strSport
         
             navigationController?.pushViewController(detailsVC, animated: true)
         }
-        
     }
     
     func UrlSession() {
-        
-        let url = URL(string: Constants.BASE_URL_MAIN ) // 1
+        let url = URL(string: Constants.BASE_URL_MAIN) // 1
         let req = URLRequest(url: url!)
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: req) { data, _, _ in
@@ -74,7 +62,6 @@ class SportViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             do {
                 let someStructArray = try JSONDecoder().decode(Sport.self, from: data!)
                 self.sportsarray = someStructArray.sports
-               // print(self.sportsarray.count)
                 
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -86,10 +73,4 @@ class SportViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         }
         task.resume()
     }
-//}
-
-    
- 
-
-
 }

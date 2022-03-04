@@ -29,13 +29,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="118"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XSh-jU-brJ">
-                                                    <rect key="frame" x="17" y="11" width="89" height="91"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XSh-jU-brJ">
+                                                    <rect key="frame" x="10" y="10" width="98" height="98"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="XSh-jU-brJ" secondAttribute="height" id="QR7-tg-z4V"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVp-ff-Esb">
-                                                    <rect key="frame" x="317" y="24" width="64" height="64"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVp-ff-Esb">
+                                                    <rect key="frame" x="314" y="24" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="70" id="Fhd-kj-17R"/>
+                                                        <constraint firstAttribute="width" constant="70" id="y1B-Cw-PlI"/>
+                                                    </constraints>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="youtube"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="youtube"/>
@@ -43,14 +48,23 @@
                                                         <action selector="favTableViewIYoutubePressed:" destination="3mS-q9-DjF" eventType="touchUpInside" id="AjI-Up-f8S"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OrW-h2-T3k">
-                                                    <rect key="frame" x="140" y="11" width="147" height="16"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OrW-h2-T3k">
+                                                    <rect key="frame" x="118" y="21" width="186" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XSh-jU-brJ" firstAttribute="top" secondItem="Wbd-rK-wRN" secondAttribute="top" constant="10" id="1oM-KP-6sM"/>
+                                                <constraint firstItem="iVp-ff-Esb" firstAttribute="centerY" secondItem="Wbd-rK-wRN" secondAttribute="centerY" id="47a-BA-W2T"/>
+                                                <constraint firstItem="OrW-h2-T3k" firstAttribute="top" secondItem="Wbd-rK-wRN" secondAttribute="topMargin" constant="10" id="5rI-vc-mC6"/>
+                                                <constraint firstItem="OrW-h2-T3k" firstAttribute="leading" secondItem="XSh-jU-brJ" secondAttribute="trailing" constant="10" id="SyW-ty-Wyb"/>
+                                                <constraint firstItem="iVp-ff-Esb" firstAttribute="leading" secondItem="OrW-h2-T3k" secondAttribute="trailing" constant="10" id="bjU-4U-gB1"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="iVp-ff-Esb" secondAttribute="trailing" constant="10" id="fdf-Kp-q7X"/>
+                                                <constraint firstItem="XSh-jU-brJ" firstAttribute="centerY" secondItem="Wbd-rK-wRN" secondAttribute="centerY" id="mYb-HH-a5w"/>
+                                                <constraint firstItem="XSh-jU-brJ" firstAttribute="leading" secondItem="Wbd-rK-wRN" secondAttribute="leading" constant="10" id="xkc-KD-o5u"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="favTableViewILabel" destination="OrW-h2-T3k" id="Dx7-s5-EJi"/>
@@ -459,6 +473,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="eventsCollectionView" destination="VFv-II-Fss" id="s0E-kE-L2X"/>
+                        <outlet property="favoriteButton" destination="Ibc-k7-OKw" id="AP2-Mg-fIA"/>
                         <outlet property="latestResultsCollectionView" destination="fMp-a2-HfV" id="HpB-DN-eUp"/>
                         <outlet property="teamCollectionView_Abdallah" destination="LDg-qp-WiJ" id="xuJ-Ov-7OT"/>
                     </connections>
