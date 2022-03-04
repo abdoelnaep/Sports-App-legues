@@ -15,6 +15,8 @@ class leguesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Leagues"
+
 
         //   print(sportName!)
         UrlSession()
@@ -29,6 +31,8 @@ class leguesTableViewController: UITableViewController {
         if let leagueDetailsVC = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as? LeagueDetailsViewController {
             leagueDetailsVC.leageName = leguesarray[indexPath.row].strLeague
             leagueDetailsVC.leageID = leguesarray[indexPath.row].idLeague
+            leagueDetailsVC.leageYoutube = leguesarray[indexPath.row].strYoutube
+            leagueDetailsVC.legueBadge = leguesarray[indexPath.row].strBadge
         
             navigationController?.pushViewController(leagueDetailsVC, animated: true)
         }

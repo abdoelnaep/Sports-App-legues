@@ -13,6 +13,8 @@ class SportViewController: UIViewController, UICollectionViewDelegateFlowLayout,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Sports"
+
         collectionView.delegate = self
         collectionView.dataSource = self
         
