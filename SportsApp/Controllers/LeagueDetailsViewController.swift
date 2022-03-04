@@ -183,8 +183,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         leageName = leageName!.replacingOccurrences(of: " ", with: "%20")
 
         guard let url = URL(string: Constants.search_all_teams + leageName!) else { return } // 1
-        print("teams link")
-        print(url)
+//        print("teams link")
+//        print(url)
 
         //   guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/searchfilename.php?e=\(String(describing: leagueName!))")
         let req = URLRequest(url: url)
@@ -214,8 +214,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
 
         leageName = leageName!.replacingOccurrences(of: " ", with: "%20")
         guard let url = URL(string: Constants.urlSub + leageID!) else { return } // 1 // 1
-        print("events result link")
-        print(url)
+//        print("events result link")
+//        print(url)
         let req = URLRequest(url: url)
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: req) { data, _, _ in
@@ -223,16 +223,16 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
             do {
                 let someStructArray = try JSONDecoder().decode(EventModel.self, from: data!)
                 self.latestResultsArray = someStructArray.events
-                print("latestResultsArray")
-                print(self.latestResultsArray.count)
+//                print("latestResultsArray")
+//                print(self.latestResultsArray.count)
 
                 DispatchQueue.main.async {
                     self.latestResultsCollectionView.reloadData()
                 }
 
             } catch {
-                print("error latestResultsArray")
-                print(error)
+//                print("error latestResultsArray")
+                print(error.localizedDescription)
             }
         }
         task.resume()
@@ -242,24 +242,24 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         leageName = leageName!.replacingOccurrences(of: " ", with: "%20")
         guard let url = URL(string: Constants.upCommingEvents + leageName!) else { return } // 1
         let req = URLRequest(url: url)
-        print("upcoming link")
-        print(url)
+//        print("upcoming link")
+//        print(url)
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: req) { data, _, _ in
 
             do {
                 let someStructArray = try JSONDecoder().decode(comingEventModel.self, from: data!)
                 self.upComingEventsArray = someStructArray.event
-                print("UpcomingEvents")
-                print(self.upComingEventsArray.count)
+//                print("UpcomingEvents")
+//                print(self.upComingEventsArray.count)
 
                 DispatchQueue.main.async {
                     self.eventsCollectionView.reloadData()
                 }
 
             } catch {
-                print("error upComingEvents")
-                print(error)
+//                print("error upComingEvents")
+                print(error.localizedDescription)
             }
         }
         task.resume()

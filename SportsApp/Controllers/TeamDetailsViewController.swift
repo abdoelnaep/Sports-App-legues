@@ -33,9 +33,9 @@ class TeamDetailsViewController: UIViewController {
 
     @IBAction func youtube(_ sender: Any) {
         if targetTeam.strYoutube != "" {
-            print("cool")
+//            print("cool")
             let url = URL(string: "https://\(String(describing: targetTeam.strYoutube!))")
-            print(url!)
+//            print(url!)
             UIApplication.shared.open(url!)
 
         } else {
@@ -45,9 +45,9 @@ class TeamDetailsViewController: UIViewController {
 
     @IBAction func facebook(_ sender: Any) {
         if targetTeam.strFacebook != "" {
-            print("cool")
+//            print("cool")
             let url = URL(string: "https://\(String(describing: targetTeam.strFacebook!))")
-            print(url!)
+//            print(url!)
 
             UIApplication.shared.open(url!)
 
@@ -58,9 +58,9 @@ class TeamDetailsViewController: UIViewController {
 
     @IBAction func officialWebsite(_ sender: Any) {
         if targetTeam.strWebsite != "" {
-            print("cool")
+//            print("cool")
             let url = URL(string: "https://\(String(describing: targetTeam.strWebsite!))")
-            print(url!)
+//            print(url!)
 
             UIApplication.shared.open(url!)
 

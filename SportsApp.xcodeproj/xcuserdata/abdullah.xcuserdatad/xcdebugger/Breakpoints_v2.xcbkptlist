@@ -15,9 +15,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "315"
-            endingLineNumber = "315"
-            landmarkName = "LeagueDetailsViewController"
-            landmarkType = "3">
+            endingLineNumber = "315">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

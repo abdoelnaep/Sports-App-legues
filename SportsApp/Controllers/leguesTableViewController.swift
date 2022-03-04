@@ -50,7 +50,7 @@ class leguesTableViewController: UITableViewController {
             cell.gotoYoutube = {
                 //  let link = sport.strYoutube != "" ? ("https://\(sport.strYoutube)") : "https://www.google.com"
                 if sport.strYoutube != "" {
-                    print("cool")
+//                    print("cool")
                     let url = URL(string: "https://\(String(describing: sport.strYoutube!))")
                     UIApplication.shared.open(url!)
 
@@ -77,7 +77,7 @@ class leguesTableViewController: UITableViewController {
         sportName = sportName!.replacingOccurrences(of: " ", with: "%20")
 
         let url = URL(string: Constants.BASE_URL_LEAGUES + sportName!) // 1
-        print(url!)
+//        print(url!)
         let req = URLRequest(url: url!)
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: req) { data, _, _ in
@@ -85,7 +85,7 @@ class leguesTableViewController: UITableViewController {
             do {
                 let someStructArray = try JSONDecoder().decode(Legues.self, from: data!)
                 self.leguesarray = someStructArray.countrys
-                print(self.leguesarray.count)
+//                print(self.leguesarray.count)
 
                 DispatchQueue.main.async {
                     self.legueTableView.reloadData()

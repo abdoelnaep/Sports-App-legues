@@ -21,7 +21,7 @@ class CoreDataServices
         let entity = NSEntityDescription.entity(forEntityName: "FavouriteLeagues", in: manageContext!)
         let leagueAttr = NSManagedObject(entity: entity!, insertInto: manageContext)
        // league.strLeague? = (league.strLeague?.replacingOccurrences(of: "%20", with:" "))!
-        print("Insert league with name  \(league.strLeague!)")
+//        print("Insert league with name  \(league.strLeague!)")
         leagueAttr.setValue(league.idLeague, forKey: "idLeague")
         leagueAttr.setValue(league.strSport, forKey: "strSport")
         leagueAttr.setValue(league.strLeague, forKey: "strLeague")
@@ -29,9 +29,9 @@ class CoreDataServices
         leagueAttr.setValue(league.strYoutube, forKey: "strYoutube")
         do{
             try manageContext?.save()
-            print("league inserted successfully")
+//            print("league inserted successfully")
           }catch let error as NSError{
-           print(error)
+              print(error.localizedDescription)
           }
     }
     
@@ -45,7 +45,7 @@ class CoreDataServices
             let result = try mContext.fetch(fetchRequest)
             mContext.delete((result as! [NSManagedObject]).first!)
             try self.manageContext?.save()
-            print("league deleted successfully")
+//            print("league deleted successfully")
                }
            } catch let error {
                print("Detele all data in LeaguesEntity error :", error)
@@ -69,7 +69,7 @@ class CoreDataServices
                 favLeagues[i.strSport!]?.append(i)
             }
         }catch let error as NSError{
-            print(error)
+            print(error.localizedDescription)
         }
         return favLeagues
     }
