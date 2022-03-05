@@ -89,10 +89,10 @@
 		3223ADD927C623EC0056236A /* SportsApp */ = {
 			isa = PBXGroup;
 			children = (
+				3223ADDC27C623EC0056236A /* SceneDelegate.swift */,
+				3223ADDA27C623EC0056236A /* AppDelegate.swift */,
 				3223ADF227C63CEC0056236A /* Controllers */,
 				3223ADF127C63CE00056236A /* Models */,
-				3223ADDA27C623EC0056236A /* AppDelegate.swift */,
-				3223ADDC27C623EC0056236A /* SceneDelegate.swift */,
 				3223ADE027C623EC0056236A /* Main.storyboard */,
 				3223ADE827C623EE0056236A /* LaunchScreen.storyboard */,
 				3223ADEB27C623EE0056236A /* Info.plist */,

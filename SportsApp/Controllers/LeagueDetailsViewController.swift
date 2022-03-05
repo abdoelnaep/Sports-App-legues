@@ -38,11 +38,10 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         UrlSessionForTeams()
         UrlSessionForEventsResult()
         UrlSessionForUpcomingEvents()
-        fetchData()
         isFovorite()
 
-        configureCollectionView()
-        configureCollectionViewResult()
+        //  configureCollectionView()
+//        configureCollectionViewResult()
 //        print(leageName!)
 //        print(teamsarray.count)
 
@@ -265,19 +264,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         task.resume()
     }
 
-    func saveData() {
-        let savedLeague = FavouriteLeagues(context: context)
-        let leagueName = leageName?.replacingOccurrences(of: "%20", with: " ")
-        savedLeague.strLeague = leagueName
-
-        savedLeague.idLeague = leageID
-        savedLeague.strYoutube = leageYoutube
-        savedLeague.strBadge = legueBadge
-
-        try? context.save()
-    }
-
     func isFovorite() {
+        fetchData()
         for i in stride(from: 0, through: favLeague.count - 1, by: 1) {
             if leageID == favLeague[i].idLeague {
                 favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
@@ -292,5 +280,16 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDataSource,
         } catch {
             print(error.localizedDescription)
         }
+    }
+
+    func saveData() {
+        let savedLeague = FavouriteLeagues(context: context)
+        let leagueName = leageName?.replacingOccurrences(of: "%20", with: " ")
+        savedLeague.strLeague = leagueName
+        savedLeague.idLeague = leageID
+        savedLeague.strYoutube = leageYoutube
+        savedLeague.strBadge = legueBadge
+
+        try? context.save()
     }
 }
